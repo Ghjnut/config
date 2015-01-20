@@ -1,0 +1,7 @@
+[user]
+	name = Jake Pelletier
+	email = jake.pelletier@sendgrid.com
+[core]
+	editor = vim
+[color]
+	ui = true
