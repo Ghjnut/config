@@ -29,6 +29,7 @@ Plugin 'gmarik/Vundle.vim'
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
+" Solarized colors
 Plugin 'altercation/vim-colors-solarized'
 " Fuzzy File Finder
 Plugin 'kien/ctrlp.vim'
@@ -45,6 +46,8 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'lervag/vim-latex'
 " Markdown (.md) support
 Plugin 'plasticboy/vim-markdown'
+" Auto-close ruby blocks
+Plugin 'tpope/vim-endwise'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,6 +64,10 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" altercation/vim-colors-solarized
+syntax enable
+set background=dark
+colorscheme solarized
 
 """""""""""""""""
 " SAMPLE CONFIG "
@@ -89,7 +96,7 @@ filetype plugin indent on    " required
 "filetype indent plugin on
 
 " Enable syntax highlighting
-syntax on
+" syntax on
 
 
 "------------------------------------------------------------
@@ -203,7 +210,7 @@ set pastetoggle=<F11>
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=2
 set softtabstop=0
-set noexpandtab
+set expandtab
 
 
 
