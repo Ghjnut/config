@@ -48,6 +48,7 @@ Plugin 'lervag/vim-latex'
 Plugin 'plasticboy/vim-markdown'
 " Auto-close ruby blocks
 Plugin 'tpope/vim-endwise'
+" Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
