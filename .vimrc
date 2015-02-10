@@ -211,6 +211,7 @@ set pastetoggle=<F11>
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=2
 set softtabstop=0
+set tabstop=2
 set expandtab
 
 
@@ -237,7 +238,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 "------------------------------------------------------------
 
-"colorscheme pablo
 set ff=unix
 set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
@@ -245,5 +245,14 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
 match Error /\%81v.\+/  "error for lines >80 chars
+
+
+"------------------------------------------------------------
+
+" Set directories (need to be created)
+" mkdir ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
 
 "set list
