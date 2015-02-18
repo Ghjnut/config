@@ -1,6 +1,8 @@
 """"""""""
 " VUNDLE "
 """"""""""
+set t_Co=256 " 256 VIM colors
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -37,7 +39,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 " GIT hooks
 Plugin 'tpope/vim-fugitive'
-" Rename current buffer `:rename[!] {newname}` 
+" Rename current buffer `:rename[!] {newname}`
 " BUGGED
 Plugin 'danro/rename.vim'
 " Vim suga
