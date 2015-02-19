@@ -109,7 +109,7 @@ chatnets = {
 channels = (
   { name = "#7daystodie"; chatnet = "GameSurge"; autojoin = "Yes"; },
   #{ name = "#lobby"; chatnet = "EsperNet"; autojoin = "No"; },
-  #{ name = "#freenode"; chatnet = "Freenode"; autojoin = "No"; },
+  { name = "#chef"; chatnet = "Freenode"; autojoin = "Yes"; },
   #{ name = "#irssi"; chatnet = "Freenode"; autojoin = "No"; },
   #{ name = "#gamesurge"; chatnet = "GameSurge"; autojoin = "No"; },
   #{ name = "#irssi"; chatnet = "IRCNet"; autojoin = "No"; },
