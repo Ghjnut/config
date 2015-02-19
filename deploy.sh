@@ -20,9 +20,9 @@ then
     mv ~/.bashrc ~/.bashrc.bak
 fi
 
-PWD=$(pwd)
+#PWD=$(pwd)
 
-ln -s "$PWD/.vimrc" ~/
-ln -s "$PWD/.tmux.conf" ~/
-ln -s "$PWD/.gitconfig" ~/
-ln -s "$PWD/.bashrc" ~/
+ln -s "$(pwd)/.vimrc" "$HOME/"
+ln -s "$(pwd)/.tmux.conf" "$HOME/"
+ln -s "$(pwd)/.gitconfig" "$HOME/"
+ln -s "$(pwd)/.bashrc" "$HOME/"
