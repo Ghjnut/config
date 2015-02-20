@@ -17,8 +17,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -50,7 +48,12 @@ Plugin 'lervag/vim-latex'
 Plugin 'plasticboy/vim-markdown'
 " Auto-close ruby blocks
 Plugin 'tpope/vim-endwise'
-" Plugin 'Valloric/YouCompleteMe'
+" Auto session saving
+Plugin 'tpope/vim-obsession'
+" Autocompletion
+" BUG: Needs NeoVim Integration
+"Plugin 'Valloric/YouCompleteMe'
+"autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
