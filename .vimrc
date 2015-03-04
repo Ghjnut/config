@@ -1,6 +1,8 @@
 """"""""""
 " VUNDLE "
 """"""""""
+set t_Co=256 " 256 VIM colors
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -15,8 +17,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -37,7 +37,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 " GIT hooks
 Plugin 'tpope/vim-fugitive'
-" Rename current buffer `:rename[!] {newname}` 
+" Rename current buffer `:rename[!] {newname}`
 " BUGGED
 Plugin 'danro/rename.vim'
 " Vim suga
@@ -48,7 +48,12 @@ Plugin 'lervag/vim-latex'
 Plugin 'plasticboy/vim-markdown'
 " Auto-close ruby blocks
 Plugin 'tpope/vim-endwise'
-" Plugin 'Valloric/YouCompleteMe'
+" Auto session saving
+Plugin 'tpope/vim-obsession'
+" Autocompletion
+" BUG: Needs NeoVim Integration
+"Plugin 'Valloric/YouCompleteMe'
+"autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -211,6 +216,7 @@ set pastetoggle=<F11>
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=2
 set softtabstop=0
+set tabstop=2
 set expandtab
 
 
@@ -237,7 +243,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 "------------------------------------------------------------
 
-"colorscheme pablo
 set ff=unix
 set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
@@ -245,5 +250,14 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
 match Error /\%81v.\+/  "error for lines >80 chars
+
+
+"------------------------------------------------------------
+
+" Set directories (need to be created)
+" mkdir ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo
+set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swp//
 
 "set list
