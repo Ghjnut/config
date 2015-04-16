@@ -12,6 +12,7 @@ servers = (
     chatnet = "GameSurge";
     port = "6667";
   },
+  { address = "irc.eagle.y.se"; chatnet = "Eagle"; port = "6667"; },
   #{ address = "eu.irc6.net"; chatnet = "IRCnet"; port = "6667"; },
   #{ address = "open.ircnet.net"; chatnet = "IRCnet"; port = "6667"; },
   #{
@@ -66,6 +67,7 @@ chatnets = {
     max_msgs = "1";
     max_whois = "1";
   };
+  Eagle = { type = "IRC"; };
   #IRCnet = { 
   #  type = "IRC";
   #  max_kicks = "1";
@@ -108,6 +110,7 @@ chatnets = {
 
 channels = (
   { name = "#7daystodie"; chatnet = "GameSurge"; autojoin = "Yes"; },
+  { name = "#LHC"; chatnet = "Eagle"; autojoin = "Yes"; },
   #{ name = "#lobby"; chatnet = "EsperNet"; autojoin = "No"; },
   { name = "#chef"; chatnet = "Freenode"; autojoin = "Yes"; },
   #{ name = "#irssi"; chatnet = "Freenode"; autojoin = "No"; },
@@ -372,15 +375,8 @@ statusbar = {
   };
 };
 settings = {
-  core = {
-    real_name = "Jake";
-    user_name = "Gnut";
-    nick = "Gnut";
-  };
+  core = { real_name = "Jake"; user_name = "Gnut"; nick = "Gnut"; };
   "fe-text" = { actlist_sort = "refnum"; };
 };
 
-ignores = ({
-   level = "JOINS PARTS QUITS"; 
-   network = "GameSurge"; 
-});
+ignores = ( { level = "JOINS PARTS QUITS"; network = "GameSurge"; } );
