@@ -54,6 +54,11 @@ Plugin 'tpope/vim-obsession'
 " BUG: Needs NeoVim Integration
 "Plugin 'Valloric/YouCompleteMe'
 "autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
+" YAML
+Plugin 'chase/vim-ansible-yaml'
+"Plugin 'avakhov/vim-yaml'
+" Docker syntax highlighting
+Plugin 'ekalinin/Dockerfile.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
