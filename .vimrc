@@ -55,10 +55,12 @@ Plugin 'tpope/vim-obsession'
 "Plugin 'Valloric/YouCompleteMe'
 "autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 " YAML
-Plugin 'chase/vim-ansible-yaml'
-"Plugin 'avakhov/vim-yaml'
+"Plugin 'chase/vim-ansible-yaml'
+Plugin 'avakhov/vim-yaml'
 " Docker syntax highlighting
-Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+" GoLang syntax highlighting
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
