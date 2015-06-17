@@ -71,6 +71,20 @@ syntax enable
 set background=dark
 colorscheme solarized
 
+
+"""""""""""
+" MY STUFF
+"""""""""""
+
+" Show control characters
+"set list
+
+" Specify <Leader>
+let mapleader=","
+" Example <Leader> command
+"noremap <Leader>W :w !sudo tee % > /dev/null
+
+
 """""""""""""""""
 " SAMPLE CONFIG "
 """""""""""""""""
@@ -210,17 +224,13 @@ set pastetoggle=<F11>
 
 " Indentation settings for using 2 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=2
 set softtabstop=0
-set tabstop=2
 set expandtab
-
-
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " two characters wide.
-"set shiftwidth=2
-"set tabstop=2
+set shiftwidth=2
+set tabstop=2
 
 
 "------------------------------------------------------------
@@ -255,5 +265,3 @@ match Error /\%81v.\+/  "error for lines >80 chars
 set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
-
-"set list
