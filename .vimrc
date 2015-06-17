@@ -1,21 +1,9 @@
-""""""""""
-" VUNDLE "
-""""""""""
-set t_Co=256 " 256 VIM colors
+""""""""""""
+" VIM-PLUG "
+""""""""""""
+call plug#begin('~/.vim/plugged')
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
+" EXAMPLES
 " Keep Plugin commands between vundle#begin/end.
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -29,53 +17,54 @@ Plugin 'gmarik/Vundle.vim'
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
 
+
 " Solarized colors
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " Fuzzy File Finder
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " Status-line
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
 " GIT hooks
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Rename current buffer `:rename[!] {newname}`
 " BUGGED
-Plugin 'danro/rename.vim'
+Plug 'danro/rename.vim'
 " Vim suga
-Plugin 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch'
 " LaTeX support
-Plugin 'lervag/vim-latex'
+Plug 'lervag/vim-latex'
 " Markdown (.md) support
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 " Auto-close ruby blocks
-Plugin 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 " Auto session saving
-Plugin 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
 " Autocompletion
 " BUG: Needs NeoVim Integration
-"Plugin 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 "autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 " YAML
-"Plugin 'chase/vim-ansible-yaml'
-Plugin 'avakhov/vim-yaml'
+"Plug 'chase/vim-ansible-yaml'
+Plug 'avakhov/vim-yaml'
 " Docker syntax highlighting
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 " GoLang syntax highlighting
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
+"" Syntax checking hacks for vim
+"Plug 'scrooloose/syntastic'
+" Replaces syntastic
+Plug 'benekastah/neomake'
+" Path explorer
+Plug 'scrooloose/nerdtree'
+" Surround blocks with delimiters
+Plug 'tpope/vim-surround'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
+
+
+"""""""""""""""""
+" PLUGIN CONFIG "
+"""""""""""""""""
 
 " altercation/vim-colors-solarized
 syntax enable
