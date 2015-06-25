@@ -211,7 +211,18 @@ set cmdheight=2
 set number
 
 " Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
+"set notimeout ttimeout ttimeoutlen=200
+
+"These should fix issues in ubuntu with delay in changing modes
+set timeout
+set timeoutlen=750
+set ttimeoutlen=250
+
+"NeoVim handles ESC keys as alt+key set this to solve the problem
+if has('nvim')
+  set ttimeout
+  set ttimeoutlen=0
+endif
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
