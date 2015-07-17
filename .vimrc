@@ -77,7 +77,7 @@ colorscheme solarized
 """""""""""
 
 " Show control characters
-"set list
+set list
 
 " Specify <Leader>
 let mapleader=","
