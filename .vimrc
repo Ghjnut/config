@@ -78,6 +78,8 @@ colorscheme solarized
 
 " Show control characters
 set list
+" Better control characters
+set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 
 " Specify <Leader>
 let mapleader=","
@@ -236,7 +238,7 @@ set pastetoggle=<F11>
 " Indentation settings for using 2 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set softtabstop=0
-set expandtab
+set noexpandtab
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " two characters wide.
