@@ -1,33 +1,25 @@
 #!/bin/bash
 
-if [ -e ~/.vimrc ]
-then
-    mv ~/.vimrc ~/.vimrc.bak
-fi
+files=( ".vimrc" ".tmux.conf" ".gitconfig" ".bashrc" ".bash_profile" ".profile" )
 
-if [ -e ~/.tmux.conf ]
-then
-    mv ~/.tmux.conf ~/.tmux.conf.bak
-fi
+create_backup_file() {
+	declare basepath="$1" filename="$2"
 
-if [ -e ~/.gitconfig ]
-then
-    mv ~/.gitconfig ~/.gitconfig.bak
-fi
+	if [ -e $basepath/$filename ]
+	then
+			cp $basepath/$filename $basepath/test/$filename.bak
+	fi
+}
 
-if [ -e ~/.bashrc ]
-then
-    mv ~/.bashrc ~/.bashrc.bak
-fi
+make_symlink() {
+	declare basepath="$1" filename="$2"
+	ln -s "$(pwd)/$filename" "$basepath/"
+}
 
-if [ -e ~/.bash_profile ]
-then
-    mv ~/.bash_profile ~/.bash_profile.bak
-fi
-#PWD=$(pwd)
-
-ln -s "$(pwd)/.vimrc" "$HOME/"
-ln -s "$(pwd)/.tmux.conf" "$HOME/"
-ln -s "$(pwd)/.gitconfig" "$HOME/"
-ln -s "$(pwd)/.bashrc" "$HOME/"
-ln -s "$(pwd)/.bash_profile" "$HOME/"
+for i in "${files[@]}"
+do
+	# Check if symlink
+	create_backup_file $HOME $i
+	rm $HOME/$i
+	make_symlink $HOME $i
+done
