@@ -58,6 +58,8 @@ Plug 'benekastah/neomake'
 Plug 'scrooloose/nerdtree'
 " Surround blocks with delimiters
 Plug 'tpope/vim-surround'
+" git-flow in airline
+Plug 'renyard/vim-git-flow-format'
 
 call plug#end()
 
