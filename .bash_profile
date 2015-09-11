@@ -4,11 +4,17 @@
 #export TERM=xterm-256color
 #export TERM=screen-256color
 
+# brew bash autocompletion
+if hash brew 2>&-; then
+	source "`brew --prefix grc`/etc/grc.bashrc"
+	if [ -f $(brew --prefix)/etc/bash_completion ]; then
+		. $(brew --prefix)/etc/bash_completion
+	fi
+fi
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
-
 for file in ~/.{bash_prompt,aliases,functions,path,extra,exports,dockerfunc}; do
 	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
