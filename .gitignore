@@ -14,7 +14,6 @@ Session.vim
 *~
 
 .extra
-.i3/logfile
 .irssi/away.log
 .irssi/config*
 .irssi/nicknames_whitelist
@@ -22,5 +21,3 @@ Session.vim
 .irssi/saved_colors
 .irssi/scripts/autorun/blocker.pl
 .irssi/startup
-.rainbow_oauth
-.nginx/conf.d/*
