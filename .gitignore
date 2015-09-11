@@ -14,10 +14,4 @@ Session.vim
 *~
 
 .extra
-.irssi/away.log
-.irssi/config*
-.irssi/nicknames_whitelist
-.irssi/otr
-.irssi/saved_colors
-.irssi/scripts/autorun/blocker.pl
-.irssi/startup
+.irssi/logs
