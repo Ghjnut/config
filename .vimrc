@@ -1,3 +1,5 @@
+set nocompatible
+
 """"""""""""
 " VIM-PLUG "
 """"""""""""
@@ -73,7 +75,6 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-
 """""""""""
 " MY STUFF
 """""""""""
@@ -148,6 +149,9 @@ set hidden
 " Better command-line completion
 set wildmenu
 
+" Ignore certain files
+set wildignore=*.swp,*.bak,*.pyc
+
 " Show partial commands in the last line of the screen
 set showcmd
 
@@ -198,6 +202,7 @@ set confirm
 
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
+set noerrorbells
 
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
@@ -274,9 +279,13 @@ match Error /\%81v.\+/  "error for lines >80 chars
 
 
 "------------------------------------------------------------
+"
+" Disable backing up and swap files
+set nobackup
+set noswapfile
 
 " Set directories (need to be created)
 " mkdir ~/.vim/.backup ~/.vim/.swp ~/.vim/.undo
-set undodir=~/.vim/.undo//
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
+"set undodir=~/.vim/.undo//
+"set backupdir=~/.vim/.backup//
+"set directory=~/.vim/.swp//
