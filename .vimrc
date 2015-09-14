@@ -57,7 +57,7 @@ Plug 'scrooloose/syntastic'
 " Replaces syntastic
 "Plug 'benekastah/neomake'
 " Path explorer
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 " Surround blocks with delimiters
 Plug 'tpope/vim-surround'
 " git-flow in airline
@@ -67,7 +67,7 @@ Plug 'vim-scripts/delimitMate.vim'
 " buffer explorer
 "Plug 'fholgado/minibufexpl.vim'
 " NERDTree for tabs
-Plug 'jistr/vim-nerdtree-tabs'
+"Plug 'jistr/vim-nerdtree-tabs'
 " line up code
 Plug 'godlygeek/tabular'
 " vim searching
@@ -91,7 +91,10 @@ set background=dark
 colorscheme solarized
 
 " NERDTree
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
+" NERDTreeTabs
+"map <Leader>n <plug>NERDTreeTabsToggle<CR>
+"map <C-n> <plug>NERDTreeTabsToggle<CR>
 
 " scrooloose/syntastic
 set statusline+=%#warningmsg#
