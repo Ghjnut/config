@@ -52,16 +52,31 @@ Plug 'avakhov/vim-yaml'
 Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 " GoLang syntax highlighting
 Plug 'fatih/vim-go'
-"" Syntax checking hacks for vim
-"Plug 'scrooloose/syntastic'
+" Syntax checking hacks for vim
+Plug 'scrooloose/syntastic'
 " Replaces syntastic
-Plug 'benekastah/neomake'
+"Plug 'benekastah/neomake'
 " Path explorer
 Plug 'scrooloose/nerdtree'
 " Surround blocks with delimiters
 Plug 'tpope/vim-surround'
 " git-flow in airline
 Plug 'renyard/vim-git-flow-format'
+" auto delimiter closing
+Plug 'vim-scripts/delimitMate.vim'
+" buffer explorer
+"Plug 'fholgado/minibufexpl.vim'
+" NERDTree for tabs
+Plug 'jistr/vim-nerdtree-tabs'
+" line up code
+Plug 'godlygeek/tabular'
+" vim searching
+Plug 'mileszs/ack.vim'
+" gutter git information
+Plug 'airblade/vim-gitgutter'
+" json syntax highlightage
+Plug 'leshill/vim-json'
+
 
 call plug#end()
 
@@ -74,6 +89,33 @@ call plug#end()
 syntax enable
 set background=dark
 colorscheme solarized
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" scrooloose/syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" Tabularize
+let mapleader=','
+if exists(":Tabularize")
+	nmap <Leader>a= :Tabularize /=<CR>
+	vmap <Leader>a= :Tabularize /=<CR>
+	nmap <Leader>a: :Tabularize /:\zs<CR>
+	vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" ACK
+if executable('ag')
+	let g:ackprg = 'ag --vimgrep'
+endif
 
 """""""""""
 " MY STUFF
