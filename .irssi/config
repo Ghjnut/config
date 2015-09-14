@@ -1,5 +1,5 @@
 servers = (
-  {
+  { 
     address = "chat.freenode.net";
     chatnet = "Freenode";
     port = "6667";
@@ -9,11 +9,7 @@ servers = (
     chatnet = "GameSurge";
     port = "6667";
   },
-  {
-    address = "irc.eagle.y.se";
-    chatnet = "Eagle";
-    port = "6667";
-  }
+  { address = "irc.eagle.y.se"; chatnet = "Eagle"; port = "6667"; }
 );
 
 chatnets = {
@@ -31,42 +27,16 @@ chatnets = {
     max_msgs = "1";
     max_whois = "1";
   };
-  Eagle = {
-    type = "IRC";
-  };
+  Eagle = { type = "IRC"; };
 };
 
 channels = (
-  {
-    name = "#7daystodie";
-    chatnet = "GameSurge"; 
-    autojoin = "Yes";
-  },
-  {
-    name = "#LHC";
-    chatnet = "Eagle";
-    autojoin = "Yes";
-  },
-  {
-    name = "#chef";
-    chatnet = "Freenode";
-    autojoin = "Yes";
-  },
-  {
-    name = "#docker";
-    chatnet = "Freenode";
-    autojoin = "Yes";
-  },
-  {
-    name = "#vim";
-    chatnet = "Freenode";
-    autojoin = "Yes";
-  },
-  {
-    name = "#tmux";
-    chatnet = "Freenode";
-    autojoin = "Yes";
-  },
+  { name = "#7daystodie"; chatnet = "GameSurge"; autojoin = "Yes"; },
+  { name = "#LHC"; chatnet = "Eagle"; autojoin = "Yes"; },
+  { name = "#chef"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#docker"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#vim"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#tmux"; chatnet = "Freenode"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -319,6 +289,13 @@ statusbar = {
         topicbarend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -335,18 +312,11 @@ settings = {
     term_charset = "ISO-8859-15";
     activity_hide_level = "= JOINS PARTS QUITS";
   };
-  "fe-text" = {
-    actlist_sort = "refnum";
-  };
+  "fe-text" = { actlist_sort = "refnum"; };
 };
 
-ignores = ( 
-  {
-    level = "JOINS PARTS QUITS";
-    network = "GameSurge";
-  },
-  {
-    level = "JOINS PARTS QUITS";
-    network = "Freenode";
-  }
+ignores = (
+  { level = "JOINS PARTS QUITS"; network = "GameSurge"; },
+  { level = "JOINS PARTS QUITS"; network = "Freenode"; }
 );
+logs = { };
