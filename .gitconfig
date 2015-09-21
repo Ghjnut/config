@@ -150,12 +150,18 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
 [user]
+
 	name = Jake Pelletier
 	email = jake.pelletier@sendgrid.com
+
 [github]
+
 	user = Ghjnut
+
 [filter "lfs"]
+
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
