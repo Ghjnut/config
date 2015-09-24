@@ -1,9 +1,6 @@
 # base profile that always gets loaded on new session
 #echo "Loading .bash_profile"
 
-#export TERM=xterm-256color
-#export TERM=screen-256color
-
 # brew bash autocompletion
 if hash brew 2>&-; then
 	source "`brew --prefix grc`/etc/grc.bashrc"
