@@ -1,25 +1,50 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -eux
+set -o pipefail
 
-files=( ".vimrc" ".tmux.conf" ".gitconfig" ".bashrc" ".bash_profile" ".profile" )
+file_exists() {
+	local file="$1"
+	return [[ -e $file ]]
+}
 
-create_backup_file() {
-	declare basepath="$1" filename="$2"
+file_is_symlink() {
+	local file="$1"
+	return [[ -h $file ]]
+}
 
-	if [ -e $basepath/$filename ]
-	then
-			cp $basepath/$filename $basepath/test/$filename.bak
-	fi
+# May be symlink
+file_is_regular() {
+	local file="$1"
+	return [[ -f $file ]]
+}
+
+
+create_backup() {
+	local file="$1"
+	cp "$file" "$file.bak"
 }
 
 make_symlink() {
-	declare basepath="$1" filename="$2"
-	ln -s "$(pwd)/$filename" "$basepath/"
+	local file="$1" link_dir="$2"
+	ln -s "$file" "$link_dir/"
 }
 
-for i in "${files[@]}"
-do
-	# Check if symlink
-	create_backup_file $HOME $i
-	rm $HOME/$i
-	make_symlink $HOME $i
-done
+main() {
+	files=( ".vimrc" ".tmux.conf" ".gitconfig" ".bashrc" ".bash_profile" ".alias" ".path" ".functions" ".aliases")
+
+	for file in "${files[@]}"; do
+		if file_exists $file; then
+			if [[ file_is_symlink $file ]] ; then
+				rm $file
+			elif [[ file_is_regular $file ]]
+				create_backup "$file"
+			fi
+		fi
+		make_symlink $file
+	
+		# Check if symlink
+		#create_backup_file $HOME $i
+		#rm $HOME/$i
+		#make_symlink $HOME $i
+	done
+}
