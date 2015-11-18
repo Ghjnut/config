@@ -53,7 +53,7 @@ Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 " GoLang syntax highlighting
 Plug 'fatih/vim-go'
 " Syntax checking hacks for vim
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 " Replaces syntastic
 "Plug 'benekastah/neomake'
 " Path explorer
@@ -125,7 +125,7 @@ endif
 """""""""""
 
 " Show control characters
-set list
+set nolist
 " Better control characters
 set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 
