@@ -1,0 +1,11 @@
+# docker-machine
+di() {
+	local name="$1"
+	if hash docker-machine 2>&-; then
+		eval "$(docker-machine env $name)"
+	fi
+}
+
+dockswab() {
+	docker rmi $(docker images -q -f dangling=true)
+}

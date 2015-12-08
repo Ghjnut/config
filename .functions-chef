@@ -1,0 +1,21 @@
+# chef initialization (** RESETS RUBY/GEM PATH)
+ci() {
+	local shell="$1"
+	if hash chef 2>&-; then
+		eval "$(chef shell-init $shell)"
+	fi
+}
+
+knifebs() {
+	local host="$1"
+	local run_list="$2"
+	local env="$3"
+	local version="$4"
+
+	knife bootstrap 10.16.240.34 --run-list "role[jenkins_slave]" --environment production_sjc --bootstrap-template chef-full --ssh-user root --bootstrap-version=11.18.6
+}
+
+lastchef() {
+	local hostname="$1"
+	knife status name:"$1"
+}
