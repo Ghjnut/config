@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+[[ "$TRACE" ]] && set -x
+set -eu -o pipefail
+
+ssh-keygen -t rsa -b 4096 -C "$EMAIL"
