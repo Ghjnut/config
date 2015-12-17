@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+[[ "$TRACE" ]] && set -x
+set -eu -o pipefail
 
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
