@@ -97,9 +97,9 @@ colorscheme solarized
 "map <C-n> <plug>NERDTreeTabsToggle<CR>
 
 " scrooloose/syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 " Tabularize
 let mapleader=','
