@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# figure out what's broken, new sessions die if this is enabled
-#set -eu -o pipefail
+#set -x
+set -eu -o pipefail
 
 # base profile that always gets loaded on new session
 #echo "Loading .bash_profile"
@@ -8,14 +8,14 @@
 # brew bash autocompletion
 if hash brew 2>&-; then
 	source "`brew --prefix grc`/etc/grc.bashrc"
-	if [ -f $(brew --prefix)/etc/bash_completion ]; then
-		. $(brew --prefix)/etc/bash_completion
-	fi
+	#if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	#	. $(brew --prefix)/etc/bash_completion
+	#fi
 fi
 
 # Load the shell dotfiles, and then some:
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{bash_prompt,aliases,functions,path,extra,exports,dockerfunc}; do
+for file in ~/.{bash_prompt,aliases,functions,path,extra,exports}; do
 	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
 unset file
