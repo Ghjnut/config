@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+# figure out what's broken, new sessions die if this is enabled
+#set -eu -o pipefail
+
 # base profile that always gets loaded on new session
 #echo "Loading .bash_profile"
 
@@ -10,13 +14,11 @@ if hash brew 2>&-; then
 fi
 
 # Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 for file in ~/.{bash_prompt,aliases,functions,path,extra,exports,dockerfunc}; do
 	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
 unset file
-
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
