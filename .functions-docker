@@ -9,3 +9,8 @@ di() {
 dockswab() {
 	docker rmi $(docker images -q -f dangling=true)
 }
+
+dockhead() {
+	local count="$1"
+  docker rm -v $(docker ps -a -q |head -n $count)
+}

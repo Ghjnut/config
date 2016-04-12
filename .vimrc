@@ -76,6 +76,8 @@ Plug 'mileszs/ack.vim'
 Plug 'airblade/vim-gitgutter'
 " json syntax highlightage
 Plug 'leshill/vim-json'
+" vim indent consitency
+"Plug 'vim-scripts/IndentConsistencyCop'
 
 
 call plug#end()
@@ -290,7 +292,7 @@ set pastetoggle=<F11>
 " Indentation settings for using 2 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set softtabstop=0
-set noexpandtab
+set expandtab
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " two characters wide.

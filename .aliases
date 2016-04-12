@@ -119,3 +119,6 @@ alias prikey="more ~/.ssh/id_rsa | xclip -selection clipboard | echo '=> Private
 
 # NeoVIM
 alias vim='nvim'
+
+# irssi scrolling refresh fix
+alias irssi='TERM=screen-256color irssi'
