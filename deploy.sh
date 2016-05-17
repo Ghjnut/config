@@ -4,43 +4,47 @@ set -o pipefail
 
 file_exists() {
 	local file="$1"
-	return [[ -e $file ]]
+	[[ -e "$file" ]]
 }
 
 file_is_symlink() {
 	local file="$1"
-	return [[ -h $file ]]
+	[[ -h "$file" ]]
 }
 
 # May be symlink
 file_is_regular() {
 	local file="$1"
-	return [[ -f $file ]]
+	[[ -f $file ]]
 }
 
 
 create_backup() {
 	local file="$1"
-	cp "$file" "$file.bak"
+	mv "$file" "$file.bak"
 }
 
 make_symlink() {
-	local file="$1" link_dir="$2"
-	ln -s "$file" "$link_dir/"
+	local source_path="$1" destination_path="$2"
+	ln -s "$source_path" "$destination_path"
 }
 
 main() {
-	files=( ".vimrc" ".tmux.conf" ".gitconfig" ".bashrc" ".bash_profile" ".alias" ".path" ".functions" ".aliases")
+	files=( ".vimrc" ".tmux.conf" ".gitconfig" ".bashrc" ".bash_profile" ".path" ".functions" ".aliases")
+	destination_dir=~
+	source_dir=$(pwd)
 
-	for file in "${files[@]}"; do
-		if file_exists $file; then
-			if [[ file_is_symlink $file ]] ; then
-				rm $file
-			elif [[ file_is_regular $file ]]
-				create_backup "$file"
+	for filename in "${files[@]}"; do
+		destination_path="$destination_dir"/"$filename"
+		source_path="$source_dir"/"$filename"
+		if file_exists $destination_path; then
+			if file_is_symlink $destination_path; then
+				rm $destination_path
+			elif file_is_regular $destination_path; then
+				create_backup "$destination_path"
 			fi
 		fi
-		make_symlink $file
+		make_symlink $source_path $destination_path
 	
 		# Check if symlink
 		#create_backup_file $HOME $i
@@ -48,3 +52,5 @@ main() {
 		#make_symlink $HOME $i
 	done
 }
+
+main
