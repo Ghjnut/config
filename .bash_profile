@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #set -x
 #set -e
-set -u -o pipefail
+#set -u -o pipefail
 
 # base profile that always gets loaded on new session
 #echo "Loading .bash_profile"
