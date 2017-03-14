@@ -14,3 +14,7 @@ dockhead() {
 	local count="$1"
   docker rm -v $(docker ps -a -q |head -n $count)
 }
+
+dockrm() {
+  docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm -f -v
+}
