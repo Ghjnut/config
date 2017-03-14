@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+[[ "$TRACE" ]] && set -x
+set -eu -o pipefail
+
+if hash nvim 2>/dev/null; then
+  echo "NeoVIM Already Installed";
+else
+  dnf -y install dnf-plugins-core
+  dnf -y copr enable dperson/neovim
+  dnf -y install neovim
+  echo "NeoVIM Installed";
+fi
+
+# deploy dotfiles
