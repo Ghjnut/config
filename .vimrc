@@ -164,7 +164,7 @@ let mapleader=","
 "filetype indent plugin on
 
 " Enable syntax highlighting
-" syntax on
+syntax on
 
 
 "------------------------------------------------------------
@@ -261,10 +261,13 @@ set mouse=a
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
-set cmdheight=2
+set cmdheight=1
 
 " Display line numbers on the left
 set number
+
+" Show numbers relative to your position
+"set relativenumber
 
 " Quickly time out on keycodes, but never time out on mappings
 "set notimeout ttimeout ttimeoutlen=200
