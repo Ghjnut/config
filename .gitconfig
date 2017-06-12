@@ -159,17 +159,14 @@
 [user]
 
 	name = Jake Pelletier
-	email = jpelletier@shutterstock.com
+	email = ghjnut@gmail.com
 
 [github]
 
-	user = jpelletier
+	user = Ghjnut
 
 [filter "lfs"]
 
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
-
-[hub]
-	host = github.shuttercorp.net
