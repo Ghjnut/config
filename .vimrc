@@ -5,67 +5,60 @@ set nocompatible
 """"""""""""
 call plug#begin('~/.vim/plugged')
 
-" EXAMPLES
-" Keep Plugin commands between vundle#begin/end.
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-
+""" STYLE """
 " Solarized colors
 Plug 'altercation/vim-colors-solarized'
-" Fuzzy File Finder
-Plug 'kien/ctrlp.vim'
 " Status-line
 Plug 'bling/vim-airline'
 " git-flow in airline
 "Plug 'renyard/vim-git-flow-format'
-" GIT hooks
+
+""" USABILITY """
+" Fuzzy File Finder
+Plug 'kien/ctrlp.vim'
+" Searching (:Ack)
+Plug 'mileszs/ack.vim'
+" Git hooks
 Plug 'tpope/vim-fugitive'
-" Vim suga (:Move, :Delete etc)
+" File management (:Move, :Delete etc)
 Plug 'tpope/vim-eunuch'
+" Auto session saving
+Plug 'tpope/vim-obsession'
+" Vim pane resizing (Ctrl-e)
+Plug 'simeji/winresizer'
+
+""" LX-UNSPECIFIC """
+" Code-tracing sidebar
+Plug 'majutsushi/tagbar'
+" Auto-complete
+Plug 'Shougo/deoplete.nvim'
+" Auto-complete:golang
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+" Surround blocks with delimiters
+Plug 'tpope/vim-surround'
+
+""" LX-SPECIFIC """
 " LaTeX support
 Plug 'lervag/vim-latex'
 " Markdown (.md) support
 Plug 'plasticboy/vim-markdown'
 " Auto-close ruby blocks
 Plug 'tpope/vim-endwise'
-" Auto session saving
-Plug 'tpope/vim-obsession'
 " YAML
 Plug 'avakhov/vim-yaml'
 " Docker syntax highlighting
 Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim/'}
 " GoLang syntax highlighting
 Plug 'fatih/vim-go'
-" Surround blocks with delimiters
-Plug 'tpope/vim-surround'
-" Searching (:Ack)
-Plug 'mileszs/ack.vim'
 " Git changes in gutter
 Plug 'airblade/vim-gitgutter'
 " JSON syntax highlight
 Plug 'leshill/vim-json'
 " Puppet syntax highlighting
 Plug 'rodjek/vim-puppet'
-" Code-tracing sidebar
-Plug 'majutsushi/tagbar'
-" Vim pane resizing (Ctrl-e)
-Plug 'simeji/winresizer'
-" Auto-complete
-Plug 'Shougo/deoplete.nvim'
-" Auto-complete:golang
-Plug 'zchee/deoplete-go', { 'do': 'make'}
 
-" * COME BACK TO
+""" COME BACK TO """
 " Autocompletion
 " BUG: Needs NeoVim Integration
 "Plug 'Valloric/YouCompleteMe'
@@ -99,13 +92,13 @@ if exists(":Tabularize")
 endif
 
 " scrooloose/syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 " ACK
 if executable('ag')
