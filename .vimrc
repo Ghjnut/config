@@ -26,17 +26,26 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-obsession'
 " Vim pane resizing (Ctrl-e)
 Plug 'simeji/winresizer'
-
-""" LX-UNSPECIFIC """
 " Code-tracing sidebar
 Plug 'majutsushi/tagbar'
+
+""" LX-UNSPECIFIC """
 " Auto-complete
 Plug 'Shougo/deoplete.nvim'
 " Auto-complete:golang
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+" Auto-completion
+Plug 'valloric/youcompleteme'
+
+" Syntax checking hacks for vim
+"Plug 'scrooloose/syntastic'
+" Replaces syntastic
+Plug 'benekastah/neomake'
 
 " Surround blocks with delimiters
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
+" Replacement for vim-surround
+Plug 'machakann/vim-sandwich'
 
 """ LX-SPECIFIC """
 " LaTeX support
@@ -58,17 +67,11 @@ Plug 'leshill/vim-json'
 " Puppet syntax highlighting
 Plug 'rodjek/vim-puppet'
 
-""" COME BACK TO """
-" Autocompletion
-" BUG: Needs NeoVim Integration
-"Plug 'Valloric/YouCompleteMe'
-"autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
-" Syntax checking hacks for vim
-"Plug 'scrooloose/syntastic'
-" Replaces syntastic
-"Plug 'benekastah/neomake'
-" Indent alignment
-"Plug 'junegunn/vim-easy-align'
+""" CHECK THESE OUT """
+" Undo history visualizer
+"Plug 'mbbill/undotree'
+" Basic git/searching
+"Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -76,12 +79,19 @@ call plug#end()
 """""""""""""""""
 " PLUGIN CONFIG "
 """""""""""""""""
+" valloric/youcompleteme
+" 1 = Disable
+let g:loaded_youcompleteme = 0
+" Shougo/deoplete.nvim
+" 1 = Enable
+let g:deoplete#enable_at_startup = 0
 
 " altercation/vim-colors-solarized
 syntax enable
 set background=dark
 colorscheme solarized
 
+" NOT SURE WHER THIS IS COMING FROM
 " Tabularize
 let mapleader=','
 if exists(":Tabularize")
@@ -100,13 +110,17 @@ endif
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 
-" ACK
+" mileszs/ack.vim
 if executable('ag')
 	let g:ackprg = 'ag --vimgrep'
 endif
 
 " Shougo/deoplete.nvim
 call deoplete#enable()
+
+" benekastah/neomake
+" When reading a buffer (after 1s), and when writing.
+call neomake#configure#automake('rw', 1000)
 
 
 """""""""""
