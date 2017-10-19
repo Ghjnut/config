@@ -26,12 +26,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'kien/ctrlp.vim'
 " Status-line
 Plug 'bling/vim-airline'
+" git-flow in airline
+"Plug 'renyard/vim-git-flow-format'
 " GIT hooks
 Plug 'tpope/vim-fugitive'
-" Rename current buffer `:rename[!] {newname}`
-" BUGGED
-Plug 'danro/rename.vim'
-" Vim suga
+" Vim suga (:Move, :Delete etc)
 Plug 'tpope/vim-eunuch'
 " LaTeX support
 Plug 'lervag/vim-latex'
@@ -41,44 +40,42 @@ Plug 'plasticboy/vim-markdown'
 Plug 'tpope/vim-endwise'
 " Auto session saving
 Plug 'tpope/vim-obsession'
+" YAML
+Plug 'avakhov/vim-yaml'
+" Docker syntax highlighting
+Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim/'}
+" GoLang syntax highlighting
+Plug 'fatih/vim-go'
+" Surround blocks with delimiters
+Plug 'tpope/vim-surround'
+" Searching (:Ack)
+Plug 'mileszs/ack.vim'
+" Git changes in gutter
+Plug 'airblade/vim-gitgutter'
+" JSON syntax highlight
+Plug 'leshill/vim-json'
+" Puppet syntax highlighting
+Plug 'rodjek/vim-puppet'
+" Code-tracing sidebar
+Plug 'majutsushi/tagbar'
+" Vim pane resizing (Ctrl-e)
+Plug 'simeji/winresizer'
+" Auto-complete
+Plug 'Shougo/deoplete.nvim'
+" Auto-complete:golang
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+" * COME BACK TO
 " Autocompletion
 " BUG: Needs NeoVim Integration
 "Plug 'Valloric/YouCompleteMe'
 "autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
-" YAML
-"Plug 'chase/vim-ansible-yaml'
-Plug 'avakhov/vim-yaml'
-" Docker syntax highlighting
-Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
-" GoLang syntax highlighting
-Plug 'fatih/vim-go'
 " Syntax checking hacks for vim
 "Plug 'scrooloose/syntastic'
 " Replaces syntastic
 "Plug 'benekastah/neomake'
-" Path explorer
-"Plug 'scrooloose/nerdtree'
-" Surround blocks with delimiters
-Plug 'tpope/vim-surround'
-" git-flow in airline
-Plug 'renyard/vim-git-flow-format'
-" auto delimiter closing
-Plug 'vim-scripts/delimitMate.vim'
-" buffer explorer
-"Plug 'fholgado/minibufexpl.vim'
-" NERDTree for tabs
-"Plug 'jistr/vim-nerdtree-tabs'
-" line up code
-Plug 'godlygeek/tabular'
-" vim searching
-Plug 'mileszs/ack.vim'
-" gutter git information
-Plug 'airblade/vim-gitgutter'
-" json syntax highlightage
-Plug 'leshill/vim-json'
-" vim indent consitency
-"Plug 'vim-scripts/IndentConsistencyCop'
-
+" Indent alignment
+"Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 
@@ -92,17 +89,6 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" NERDTree
-"map <C-n> :NERDTreeToggle<CR>
-" NERDTreeTabs
-"map <Leader>n <plug>NERDTreeTabsToggle<CR>
-"map <C-n> <plug>NERDTreeTabsToggle<CR>
-
-" scrooloose/syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
 " Tabularize
 let mapleader=','
 if exists(":Tabularize")
@@ -112,6 +98,10 @@ if exists(":Tabularize")
 	vmap <Leader>a: :Tabularize /:\zs<CR>
 endif
 
+" scrooloose/syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -122,9 +112,24 @@ if executable('ag')
 	let g:ackprg = 'ag --vimgrep'
 endif
 
+" Shougo/deoplete.nvim
+call deoplete#enable()
+
+
 """""""""""
 " MY STUFF
 """""""""""
+
+" Not sure what this stuff is
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_browse_split = 3
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnt * :Vexplore
+"augroup END
 
 " Show control characters
 set nolist
