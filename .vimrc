@@ -79,27 +79,28 @@ call plug#end()
 """""""""""""""""
 " PLUGIN CONFIG "
 """""""""""""""""
-" valloric/youcompleteme
-" 1 = Disable
-let g:loaded_youcompleteme = 0
-" Shougo/deoplete.nvim
-" 1 = Enable
-let g:deoplete#enable_at_startup = 0
 
 " altercation/vim-colors-solarized
 syntax enable
 set background=dark
 colorscheme solarized
 
+"Plug 'kien/ctrlp.vim'
+let g:ctrlp_show_hidden = 1
+
+" valloric/youcompleteme
+" 1 = Disable
+let g:loaded_youcompleteme = 1
+
 " NOT SURE WHER THIS IS COMING FROM
 " Tabularize
-let mapleader=','
-if exists(":Tabularize")
-	nmap <Leader>a= :Tabularize /=<CR>
-	vmap <Leader>a= :Tabularize /=<CR>
-	nmap <Leader>a: :Tabularize /:\zs<CR>
-	vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
+"let mapleader=','
+"if exists(":Tabularize")
+"	nmap <Leader>a= :Tabularize /=<CR>
+"	vmap <Leader>a= :Tabularize /=<CR>
+"	nmap <Leader>a: :Tabularize /:\zs<CR>
+"	vmap <Leader>a: :Tabularize /:\zs<CR>
+"endif
 
 " scrooloose/syntastic
 "set statusline+=%#warningmsg#
@@ -116,7 +117,12 @@ if executable('ag')
 endif
 
 " Shougo/deoplete.nvim
+" 1 = Enable
+let g:deoplete#enable_at_startup = 0
 call deoplete#enable()
+
+" zchee/deoplete-go
+let g:deoplete#sources#go#package_dot = 1
 
 " benekastah/neomake
 " When reading a buffer (after 1s), and when writing.
@@ -148,6 +154,8 @@ let mapleader=","
 " Example <Leader> command
 "noremap <Leader>W :w !sudo tee % > /dev/null
 
+" Highlight cursor line
+set cursorline
 
 """""""""""""""""
 " SAMPLE CONFIG "
