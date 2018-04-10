@@ -30,7 +30,7 @@ make_symlink() {
 }
 
 main() {
-	files=( ".vimrc" ".tmux.conf" ".gitconfig" ".bashrc" ".bash_profile" ".path" ".functions" ".aliases")
+	files=( ".vimrc" ".tmux.conf" ".gitconfig" ".aliases" ".bashrc" ".bash_profile" ".bash_prompt" ".exports" ".functions" ".functions-chef" ".functions-docker" ".path")
 	destination_dir=~
 	source_dir=$(pwd)
 
