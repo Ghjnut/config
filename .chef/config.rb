@@ -1,1 +1,0 @@
-/Users/jakepelletier/.chef/config.rb

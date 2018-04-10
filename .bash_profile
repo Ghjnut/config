@@ -16,7 +16,7 @@ fi
 
 # Load the shell dotfiles, and then some:
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{bash_prompt,aliases,functions,functions-docker,functions-chef,path,exports,extra}; do
+for file in ~/.{aliases,bash_prompt,exports,extra,functions,functions-chef,functions-docker,path}; do
 	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
 unset file
