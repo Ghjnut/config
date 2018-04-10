@@ -18,3 +18,17 @@ dockhead() {
 dockrm() {
   docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm -f -v
 }
+
+dockwipe() {
+  docker stop $(docker ps -a -q) && docker rm -v $(docker ps -a -q)
+}
+
+dcrun() {
+  local image="$1"
+  local command="${@:2}"
+  docker-compose run --rm ${image} ${command}
+}
+
+dcwipe() {
+  docker-compose stop && docker-compose rm -f -v
+}
