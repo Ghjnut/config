@@ -219,6 +219,7 @@ tre() {
 }
 
 # Call from a local repo to open the repository on github/bitbucket in browser
+# TODO make github
 repo() {
 	local giturl=$(git config --get remote.origin.url | sed 's/git@/\/\//g' | sed 's/.git$//' | sed 's/https://g' | sed 's/:/\//g')
 	if [[ $giturl == "" ]]; then
@@ -286,75 +287,8 @@ isup() {
 	fi
 }
 
-# build go static binary from root of project
-gostatic(){
-	local dir=$1
-	local arg=$2
-
-	if [[ -z $dir ]]; then
-		dir=$(pwd)
-	fi
-
-	local name=$(basename "$dir")
-	(
-	cd $dir
-	export GOOS=linux
-	echo "Building static binary for $name in $dir"
-
-	if [[ $arg = "netgo" ]]; then
-		set -x
-		go build -a \
-			-tags 'netgo static_build' \
-			-installsuffix netgo \
-			-ldflags "-w" \
-			-o "$name" .
-	else
-		set -x
-		CGO_ENABLED=0 go build -a \
-			-installsuffix cgo \
-			-ldflags "-w" \
-			-o "$name" .
-	fi
-	)
-}
-
-# go to a folder easily in your gopath
-gogo(){
-	local d=$1
-
-	if [[ -z $d ]]; then
-		echo "You need to specify a project name."
-		return 1
-	fi
-
-	if [[ "$d" = github* ]]; then
-		d=$(echo $d | sed 's/.*\///')
-	fi
-	d=${d%/}
-
-	# search for the project dir in the GOPATH
-	local path=( `find "${GOPATH}/src" -iname "$d" -type d | awk '{print length, $0;}' | sort -n | awk '{print $2}'` )
-
-	if [ "$path" == "" ] || [ "${path[*]}" == "" ]; then
-		echo "Could not find a directory named $d in $GOPATH"
-		echo "Maybe you need to 'go get' it ;)"
-		return 1
-	fi
-
-	# enter the first path found
-	cd "${path[0]}"
-}
-
-golistdeps(){
-	(
-	gogo $@
-
-	go list -e -f '{{join .Deps "\n"}}' ./... | xargs go list -e -f '{{if not .Standard}}{{.ImportPath}}{{end}}'
-	)
-}
-
 # get the name of a x window
-xname(){
+xname() {
 	local window_id=$1
 
 	if [[ -z $window_id ]]; then
@@ -377,8 +311,23 @@ xname(){
 		-e '${g; p}'
 }
 
+# ## MINE
+
+# dstat (disk usage statistics
+ds() {
+  dstat -tdD total,sda,sdb 10
+}
+
+iotop() {
+  iotop -aoP
+}
+
+nvid() {
+  watch -d -n 0.5 nvidia-smi
+}
+
 # Load additional functions
-for file in ~/.functions-{docker,chef}; do
+for file in ~/.functions-{docker,chef,go}; do
 	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
 unset file
