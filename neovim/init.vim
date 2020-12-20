@@ -3,78 +3,243 @@ set nocompatible
 """"""""""""
 " VIM-PLUG "
 """"""""""""
+
+" auto-install vim-plug
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 
-""" STYLE """
+" EXAMPLES
+" Keep Plugin commands between vundle#begin/end.
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+
+
+" ctags integrataion
+Plug 'powerline/powerline-fonts'
+"Plug 'ludovicchabant/vim-gutentags'
+Plug 'liuchengxu/vista.vim'
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 " Solarized colors
 Plug 'altercation/vim-colors-solarized'
-" Status-line
-Plug 'bling/vim-airline'
-" git-flow in airline
-"Plug 'renyard/vim-git-flow-format'
-
-""" USABILITY """
 " Fuzzy File Finder
 Plug 'kien/ctrlp.vim'
-" Searching (:Ack)
-Plug 'mileszs/ack.vim'
-" Git hooks
+" generic fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Status-line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts = 1
+" GIT hooks
 Plug 'tpope/vim-fugitive'
-" File management (:Move, :Delete etc)
+" Rename current buffer `:rename[!] {newname}`
+" BUGGED
+"Plug 'danro/rename.vim'
+" unix shell mappings (e.g. `:Move`
 Plug 'tpope/vim-eunuch'
+
+" LaTeX support
+Plug 'lervag/vimtex'
+"FIXES vimtex: g:tex_flavor not specified
+
+"Please read :help vimtex-tex-flavor!
+let g:tex_flavor = "latex"
+
+" TOML (.toml) support
+Plug 'cespare/vim-toml'
+" Markdown (.md) support
+Plug 'plasticboy/vim-markdown'
+" Typescript
+Plug 'leafgarland/typescript-vim'
+" Auto-close ruby blocks
+Plug 'tpope/vim-endwise'
 " Auto session saving
 Plug 'tpope/vim-obsession'
-" Vim pane resizing (Ctrl-e)
-Plug 'simeji/winresizer'
-" Code-tracing sidebar
-Plug 'majutsushi/tagbar'
+" YAML
+"Plug 'chase/vim-ansible-yaml'
+Plug 'avakhov/vim-yaml'
+" Docker syntax highlighting
+Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plug 'mattn/emmet-vim'
+" python syntax
+Plug 'psf/black', { 'branch': 'stable' }
 
-""" LX-UNSPECIFIC """
-" Auto-complete
-Plug 'Shougo/deoplete.nvim'
-" Auto-complete:golang
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-" Auto-completion
-Plug 'valloric/youcompleteme'
+" Golang autocompletion
+Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+
+" GoLang syntax highlighting
+Plug 'fatih/vim-go'
+
+"Plug 'vim-hclfmt'
+"let g:hcl_fmt_autosave = 0
+"let g:tf_fmt_autosave = 0
+"let g:nomad_fmt_autosave = 0
 
 " Syntax checking hacks for vim
 "Plug 'scrooloose/syntastic'
-" Replaces syntastic
-Plug 'benekastah/neomake'
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+" not sure what this does. Replaces syntastic?
+"Plug 'benekastah/neomake'
+
+" Path explorer
+"Plug 'scrooloose/nerdtree'
 
 " Surround blocks with delimiters
-"Plug 'tpope/vim-surround'
-" Replacement for vim-surround
-Plug 'machakann/vim-sandwich'
+Plug 'tpope/vim-surround'
 
-""" LX-SPECIFIC """
-" LaTeX support
-Plug 'lervag/vim-latex'
-" Markdown (.md) support
-Plug 'plasticboy/vim-markdown'
-" Auto-close ruby blocks
-Plug 'tpope/vim-endwise'
-" YAML
-Plug 'avakhov/vim-yaml'
-" Docker syntax highlighting
-Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim/'}
-" GoLang syntax highlighting
-Plug 'fatih/vim-go'
-" Git changes in gutter
+" git-flow in airline
+Plug 'renyard/vim-git-flow-format'
+
+" auto delimiter closing
+Plug 'vim-scripts/delimitMate.vim'
+
+" b:uffer explorer
+"Plug 'fholgado/minibufexpl.vim'
+
+" NERDTree for tabs
+"Plug 'jistr/vim-nerdtree-tabs'
+
+" Line up code
+Plug 'godlygeek/tabular'
+let mapleader=','
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+" vim searching
+Plug 'mileszs/ack.vim'
+
+" gutter git information
+" ,[c   next hunk
+" ,hs   stage hunk
+" ,hs   undo stage hunk
+" :GitGutterLineHighlightsEnable
 Plug 'airblade/vim-gitgutter'
-" JSON syntax highlight
+
+" json syntax highlightage
 Plug 'leshill/vim-json'
-" Puppet syntax highlighting
-Plug 'rodjek/vim-puppet'
 
-""" CHECK THESE OUT """
-" Undo history visualizer
-"Plug 'mbbill/undotree'
-" Basic git/searching
-"Plug 'junegunn/fzf.vim'
+" vim indent consitency
+"Plug 'vim-scripts/IndentConsistencyCop'
 
+" Code Autocompletion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+" Go code autocompletion
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+let g:deoplete#sources#go#gocode_binary       = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#package_dot         = 1 "auto-add dot after package
+let g:deoplete#sources#go#sort_class          = [] "primary sort class (package type func var const)
+let g:deoplete#sources#go#cgo                 = 0
+let g:deoplete#sources#go#goos                = ''
+let g:deoplete#sources#go#source_importer     = 0 " leave disabled
+let g:deoplete#sources#go#builtin_objects     = 0
+let g:deoplete#sources#go#unimported_packages = 0
+let g:deoplete#sources#go#pointer             = 0 " upport pointer (*) match
+set completeopt-=preview " hide scratch buffer
+"set completeopt+=noselect
+
+" Autocompletion
+" BUG: Needs NeoVim Integration
+" heavy-handed?
+"Plug 'Valloric/YouCompleteMe'
+
+" ctrl-e winresizer
+Plug 'simeji/winresizer'
+let g:winresizer_enable             = 1   " use winresizer (if this value is 0, this plugin will not work)
+let g:winresizer_gui_enable         = 0   " use winresizer in gui vim (if this value is 0, this plugin will not work in gui vim such as mac vim)
+let g:winresizer_finish_with_escape = 1   " if this value is 1, window resize mode is finished(fixed) by esc
+let g:winresizer_vert_resize        = 10  " the change width of window size when left or right key is pressed
+let g:winresizer_horiz_resize       = 3   " the change height of window size when down or up key is pressed
+" let g:winresizer_start_key          = C   " + e 	Start window resize mode
+" let g:winresizer_gui_start_key      = C   " + a 	Start window resize mode (in GUI Vim)
+let g:winresizer_keycode_left       = 104 " (h) 	Expand window size to left
+let g:winresizer_keycode_right      = 108 " (l) 	Expand window size to right
+let g:winresizer_keycode_down       = 106 " (j) 	Expand window size to down
+let g:winresizer_keycode_up         = 107 " (k) 	Expand window size to up
+let g:winresizer_keycode_focus      = 102 " (f) 	Change a mode to Focus mode
+let g:winresizer_keycode_move       = 109 " (m) 	Change a mode to Move mode
+let g:winresizer_keycode_resize     = 114 " (r) 	Change a mode to Resize mode
+let g:winresizer_keycode_mode       = 101 " (e) 	Rotate a mode (Resize -> Move -> Focus -> Resize ...)
+let g:winresizer_keycode_finish     = 13  " (Enter) 	Fix and escape from window resize mode
+let g:winresizer_keycode_cancel     = 113 " (q) 	Cancel and quit window resize mode<Paste>
+
+"""""""""""
+" TESTING "
+"""""""""""
+
+" godot hooks
+Plug 'habamax/vim-godot'
+func! GodotSettings() abort
+    setlocal foldmethod=expr
+    setlocal tabstop=4
+    nnoremap <buffer> <F4> :GodotRunLast<CR>
+    nnoremap <buffer> <F5> :GodotRun<CR>
+    nnoremap <buffer> <F6> :GodotRunCurrent<CR>
+    nnoremap <buffer> <F7> :GodotRunFZF<CR>
+endfunc
+augroup godot | au!
+    au FileType gdscript call GodotSettings()
+augroup end
+
+" HTML Syntax
+Plug 'mattn/emmet-vim'
+" Ruby syntax/indenting
+Plug 'vim-ruby/vim-ruby'
+"
+" Block Commenting
+" ,cc   comment
+" ,cn   comment w/ nesting
+" ,c<space>   comment toggle
+Plug 'scrooloose/nerdcommenter'
+"let g:NERDSpaceDelims            = 1 " Add spaces after comment delimiters by default
+"let g:NERDCompactSexyComs        = 1 " Use compact syntax for prettified multi-line comments
+"let g:NERDDefaultAlign           = 'left' " Align line-wise comment delimiters flush left instead of following code indentation
+"let g:NERDAltDelims_java         = 1 " Set a language to use its alternate delimiters by default
+"let g:NERDCustomDelimiters       = { 'c': { 'left': '/**','right': '*/' } } " Add your own custom formats or override the defaults
+"let g:NERDCommentEmptyLines      = 1 " Allow commenting and inverting empty lines (useful when commenting a region)
+"let g:NERDTrimTrailingWhitespace = 1 " Enable trimming of trailing whitespace when uncommenting
+"let g:NERDToggleCheckAllLines    = 1 " Enable NERDCommenterToggle to check all selected lines is commented or not
+
+
+Plug 'hashivim/vim-terraform'
+
+
+" Block commmenting
 call plug#end()
 
+"filetype plugin on
 
 """""""""""""""""
 " PLUGIN CONFIG "
@@ -85,64 +250,26 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-"Plug 'kien/ctrlp.vim'
+" kien/ctrlp
 let g:ctrlp_show_hidden = 1
 
-" valloric/youcompleteme
-" 1 = Disable
-let g:loaded_youcompleteme = 1
+" NERDTree
+"map <C-n> :NERDTreeToggle<CR>
+" NERDTreeTabs
+"map <Leader>n <plug>NERDTreeTabsToggle<CR>
+"map <C-n> <plug>NERDTreeTabsToggle<CR>
 
-" NOT SURE WHER THIS IS COMING FROM
-" Tabularize
-"let mapleader=','
-"if exists(":Tabularize")
-"	nmap <Leader>a= :Tabularize /=<CR>
-"	vmap <Leader>a= :Tabularize /=<CR>
-"	nmap <Leader>a: :Tabularize /:\zs<CR>
-"	vmap <Leader>a: :Tabularize /:\zs<CR>
-"endif
-
-" scrooloose/syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-" mileszs/ack.vim
+" ACK
 if executable('ag')
-	let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep'
 endif
 
-" Shougo/deoplete.nvim
-" 1 = Enable
-let g:deoplete#enable_at_startup = 0
-call deoplete#enable()
-
-" zchee/deoplete-go
-let g:deoplete#sources#go#package_dot = 1
-
-" benekastah/neomake
-" When reading a buffer (after 1s), and when writing.
-call neomake#configure#automake('rw', 1000)
-
+" YouCompleteMe
+autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<cr>
 
 """""""""""
 " MY STUFF
 """""""""""
-
-" Not sure what this stuff is
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_browse_split = 3
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-"augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnt * :Vexplore
-"augroup END
 
 " Show control characters
 set nolist
@@ -154,8 +281,6 @@ let mapleader=","
 " Example <Leader> command
 "noremap <Leader>W :w !sudo tee % > /dev/null
 
-" Highlight cursor line
-set cursorline
 
 """""""""""""""""
 " SAMPLE CONFIG "
@@ -184,7 +309,7 @@ set cursorline
 "filetype indent plugin on
 
 " Enable syntax highlighting
-syntax on
+" syntax on
 
 
 "------------------------------------------------------------
@@ -286,8 +411,8 @@ set cmdheight=1
 " Display line numbers on the left
 set number
 
-" Show numbers relative to your position
-"set relativenumber
+" Display relative line numbers
+set norelativenumber
 
 " Quickly time out on keycodes, but never time out on mappings
 "set notimeout ttimeout ttimeoutlen=200
