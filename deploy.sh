@@ -1,56 +1,66 @@
 #!/usr/bin/env bash
-set -eux
-set -o pipefail
-
-file_exists() {
-	local file="$1"
-	[[ -e "$file" ]]
-}
-
-file_is_symlink() {
-	local file="$1"
-	[[ -h "$file" ]]
-}
-
-# May be symlink
-file_is_regular() {
-	local file="$1"
-	[[ -f $file ]]
-}
-
-
-create_backup() {
-	local file="$1"
-	mv "$file" "$file.bak"
-}
-
-make_symlink() {
-	local source_path="$1" destination_path="$2"
-	ln -s "$source_path" "$destination_path"
-}
+[[ "$TRACE" ]] && set -x
+set -eu -o pipefail
 
 main() {
-	files=( ".vimrc" ".tmux.conf" ".gitconfig" ".aliases" ".bashrc" ".bash_profile" ".bash_prompt" ".exports" ".functions" ".functions-chef" ".functions-docker" ".path")
-	destination_dir=~
-	source_dir=$(pwd)
+  declare -A paths
 
-	for filename in "${files[@]}"; do
-		destination_path="$destination_dir"/"$filename"
-		source_path="$source_dir"/"$filename"
-		if file_exists $destination_path; then
-			if file_is_symlink $destination_path; then
-				rm $destination_path
-			elif file_is_regular $destination_path; then
-				create_backup "$destination_path"
-			fi
-		fi
-		make_symlink $source_path $destination_path
-	
-		# Check if symlink
-		#create_backup_file $HOME $i
-		#rm $HOME/$i
-		#make_symlink $HOME $i
-	done
+  #  ".alias" ".path" ".functions" ".aliases"
+  #files=(".tmux.conf" ".gitconfig" ".bashrc" ".bash_profile")
+
+  # TODO add fzf
+  paths["irssi/.irssi"]="${HOME}/.irssi"
+  paths["tmux/.tmux.conf"]="${HOME}/.tmux.conf"
+  paths["git/.gitconfig"]="${HOME}/.gitconfig"
+  paths["bash"]="${HOME}/.bash"
+  paths[".bash_profile"]="${HOME}/.bash_profile"
+  paths[".bashrc"]="${HOME}/.bashrc"
+  paths[".bash_logout"]="${HOME}/.bash_logout"
+
+  mkdir -p "${HOME}/.config/nvim"
+  paths["neovim/init.vim"]="${HOME}/.config/nvim/init.vim"
+
+  for source in "${!paths[@]}"; do
+    process_file "${source}" "${paths[$source]}"
+  done
+
+  apt_install
+
+  # TODO download /home/ghjnut/src/github.com/Anthony25/gnome-terminal-colors-solarized
+  # TODO /home/ghjnut/src/github.com/Anthony25/gnome-terminal-colors-solarized/install.sh
+}
+
+process_file() {
+  local src="${1}"
+  local dest="${2}"
+
+  if [ -e "${src}" ]; then
+    echo "Exists ${src}"
+    # TODO make this correctly handle dead symlinks
+    if [ -e "${dest}" ]; then
+      echo " Exists ${dest}"
+      if [ -h "${dest}" ]; then
+        echo "  Burn symlink ${dest}"
+        rm "${dest}"
+      elif [ -f "${dest}" ]; then
+        echo "  Backin up ${dest}"
+        create_backup "${dest}"
+      fi
+    fi
+    echo " Linking ${dest}"
+    ln -s "$(pwd)/${source}" "${dest}"
+  else
+    echo "Doesn't exist ${src}"
+  fi
+}
+
+apt_install() {
+  sudo apt install tmux tree
+}
+
+create_backup() {
+  local file="$1"
+  cp "${file}" "${file}.bak"
 }
 
 main
