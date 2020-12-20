@@ -1,0 +1,6 @@
+# TODO clean up this mess (check w/ w/o tmux)
+# go path
+export GOPATH=$HOME/go
+
+# update path
+export PATH=~/bin:~/.local/bin:/usr/local/bin:/usr/local/go/bin:$PATH:$GOPATH/bin:/sbin
