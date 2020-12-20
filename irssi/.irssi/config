@@ -4,39 +4,28 @@ servers = (
     chatnet = "Freenode";
     port = "6667";
   },
-  {
-    address = "irc.gamesurge.net";
-    chatnet = "GameSurge";
-    port = "6667";
-  },
   { address = "irc.eagle.y.se"; chatnet = "Eagle"; port = "6667"; }
 );
 
 chatnets = {
   Freenode = {
     type = "IRC";
-    nick = "Gnut";
+    nick = "gnut";
     max_kicks = "1";
     max_msgs = "4";
     max_whois = "1";
-    autosendcmd = "/msg NickServ IDENTIFY $IRSSI_USERNAME $IRSSI_PASSWORD; wait 2000";
+    #autosendcmd = "/msg NickServ IDENTIFY $IRSSI_USERNAME $IRSSI_PASSWORD; wait 2000";
   };
-  GameSurge = {
-    type = "IRC";
-    max_kicks = "1";
-    max_msgs = "1";
-    max_whois = "1";
-  };
-  Eagle = { type = "IRC"; };
+  Eagle = { type = "IRC"; nick = "gnut"; };
 };
 
 channels = (
-  { name = "#7daystodie"; chatnet = "GameSurge"; autojoin = "Yes"; },
   { name = "#LHC"; chatnet = "Eagle"; autojoin = "Yes"; },
-  { name = "#chef"; chatnet = "Freenode"; autojoin = "Yes"; },
+  #{ name = "#chef"; chatnet = "Freenode"; autojoin = "Yes"; },
   { name = "#docker"; chatnet = "Freenode"; autojoin = "Yes"; },
-  { name = "#vim"; chatnet = "Freenode"; autojoin = "Yes"; },
-  { name = "#tmux"; chatnet = "Freenode"; autojoin = "Yes"; }
+  #{ name = "#vim"; chatnet = "Freenode"; autojoin = "Yes"; },
+  #{ name = "#tmux"; chatnet = "Freenode"; autojoin = "Yes"; }
+  { name = "#winehackers"; chatnet = "Freenode"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -298,13 +287,15 @@ statusbar = {
     };
   };
 };
+
 settings = {
   core = {
     real_name = "Jake";
-    user_name = "Gnut";
-    nick = "Gnut";
+    user_name = "gnut";
+    nick = "gnut";
     timestamp_format = "%H:%M";
     log_timestamp = "%H:%M:%S ";
+    recode_transliterate = "no";
   };
   "fe-common/core" = {
     autolog = "yes";
@@ -315,8 +306,6 @@ settings = {
   "fe-text" = { actlist_sort = "refnum"; };
 };
 
-ignores = (
-  { level = "JOINS PARTS QUITS"; network = "GameSurge"; },
-  { level = "JOINS PARTS QUITS"; network = "Freenode"; }
-);
+ignores = ( { level = "JOINS PARTS QUITS"; network = "Freenode"; } );
+
 logs = { };
