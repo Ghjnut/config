@@ -28,6 +28,8 @@
 	# Commit all changes
 	ca = !git add -A && git commit -av
 
+	git = "!f() { git clone https://github.com/\"$1\".git ~/src/github.com/\"$1\"; }; f"
+
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
